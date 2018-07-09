@@ -24,21 +24,14 @@ Move the `data` and `assets` folders from reference to the `src` directory in `r
 
 ```bash
 cd react-pirates
-```
-
-```bash
-npm run start
+npm start
 ```
 
 ### JSX
 
-App.js > Header.js:
-
 1. logo: {logo}: JSX
 1. class → className: JSX
 1. xhtml style closing tags: JSX
-
-Use a code highlighter suitable for react. In sublime you can use the [Babel](https://packagecontrol.io/packages/Babel) package.
 
 Examine CSS:
 
@@ -52,8 +45,6 @@ Examine CSS:
 Add `<p>test</p>` above div to see a common error.
 
 ### Comments
-
-A snippet is [available](http://wesbos.com/react-jsx-comments/) for sublime text.
 
 `{/* <img src={logo} className="logo" alt="logo" /> */}`
 
@@ -86,12 +77,6 @@ Import our fonts and clean up the default html template.
 </html>
 ```
 
-Point `App.js` to the new directory for its css (delete the App.css file from the top level of source)
-
-* App
-
-`import './assets/css/App.css';`
-
 ### Components
 
 In a new components folder.
@@ -100,6 +85,8 @@ In a new components folder.
 
 ```js
 import React, { Component } from 'react';
+
+import '../assets/css/Pirate.css'
 
 class Pirate extends React.Component {
   render(){
@@ -139,10 +126,14 @@ Add a property to the component instance in `App.js`:
 ```js
 import React, { Component } from 'react';
 
+import '../assets/css/Pirate.css'
+
 class Pirate extends React.Component {
   render(){
     return (
-      <p>{this.props.tagline}</p>
+      <div className='pirate'>
+        <p>{this.props.tagline}</p>
+      </div>
       )
   }
 }
@@ -164,24 +155,6 @@ Select `<Pirate />`
 
 Console: `$r.props`
 
-## CSS
-
-Import it into the `Pirate` component:
-
-`import '../assets/css/Pirate.css'`
-
- and add a className to the jsx.
-
-```js
-render(){
-    return (
-      <div className='pirate'>
-        <p>{this.props.tagline}</p>
-      </div>
-      )
-  }
-```
-
 ## Header component
 
 Create a new Header component:
@@ -194,9 +167,9 @@ import logo from '../assets/img/anchor.svg';
 class Header extends React.Component {
   render(){
     return (
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Header Component</h2>
+      <div className="header">
+        <img src={logo} className="logo" alt="logo" />
+        <h1>Pirates!</h1>
       </div>)
     }
   }
@@ -204,30 +177,36 @@ class Header extends React.Component {
 export default Header;
 ```
 
-Note the link to the image. Assets are available in the reference folder.
-
-Import Header.js into `App.js`:
+Import `Header.js` into `App.js`:
 
 `import Header from './components/Header';`
 
-Add it to App.js's render method, replacing the current header.
+Add it to `App.js`'s render method, replacing the current header.
 
 * App.js
 
 ```jsx
+import React, { Component } from 'react';
+
+import Pirate from './components/Pirate';
+import Header from './components/Header';
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <Pirate tagline="Ahoy from the Pirate component" />
+        <Pirate tagline="Ahoy from the Pirate Component" />
       </div>
     );
   }
 }
+
+export default App;
+
 ```
 
-To apply the css make adjustments to the JSX.
+Delete the App.css file from the top level of source.
 
 ## Adding Pirates
 
@@ -258,15 +237,20 @@ Create another component - `AddPirateForm.js` in components:
 ```js
 import React, { Component } from 'react';
 
-class AddPirateForm extends React.Component {
+import '../assets/css/AddPirateForm.css';
+
+class AddPirateForm extends Component {
   render(){
     return (
+      <div>
+        <h3>Add Pirate Form Component</h3>
       <form>
       <input type="text" placeholder="Pirate name" />
       <input type="text" placeholder="Pirate vessel" />
       <input type="text" placeholder="Pirate weapon" />
       <button type="submit">Add Pirate</button>
       </form>
+      </div>
       )
   }
 }
@@ -290,17 +274,13 @@ import PirateForm from './components/PirateForm';
     );
 ```
 
-Import the css into `AddPirateForm`:
-
-``import '../assets/css/AddPirateForm.css'``
-
 ## Adding Methods
 
-Wire up the form in `AddPirateForm` with `<form onSubmit={(e) => this.createPirate(e)}>`:
+Wire up the form in `AddPirateForm` with `<form onSubmit = { (e) => this.createPirate(e) }>`:
 
 ```js
 return (
-  <form onSubmit={(e) => this.createPirate(e)}>
+  <form onSubmit = { (e) => this.createPirate(e) }>
   <input type="text" placeholder="Pirate name" />
   <input type="text" placeholder="Pirate vessel" />
   <input type="text" placeholder="Pirate weapon" />
@@ -320,15 +300,17 @@ createPirate(event) {
 
 And test.
 
-Add [refs](https://facebook.github.io/react/docs/refs-and-the-dom.html) to the form to store references to the input:
+Add [references](https://facebook.github.io/react/docs/refs-and-the-dom.html) to the form to store references to the input:
 
 ```js
-<form onSubmit={(e) => this.createPirate(e)}>
-<input ref={(input) => this.name = input } type="text" placeholder="Pirate name" />
-<input ref={(input) => this.vessel = input } type="text" placeholder="Pirate vessel" />
-<input ref={(input) => this.weapon = input } type="text" placeholder="Pirate weapon" />
-<button type="submit">Add Pirate</button>
-</form>
+    return (
+      <form onSubmit={ (e) => this.createPirate(e) }>
+        <input ref={ (input) => this.name = input } type="text" placeholder="Pirate name" />
+        <input ref={ (input) => this.vessel = input } type="text" placeholder="Pirate vessel" />
+        <input ref={ (input) => this.weapon = input } type="text" placeholder="Pirate weapon" />
+        <button type="submit">Add Pirate</button>
+      </form>
+    )
 ```
 
 Go to the React dev tools, find the `AddPirateForm` component, `$r` in the console to see the inputs.
@@ -338,7 +320,7 @@ Create a `pirate` object in `AddPirateForm`'s `createPirate` function:
 ```jsx
 createPirate(event) {
   event.preventDefault();
-  console.log('making a pirate')
+
   const pirate = {
     name: this.name.value,
     vessel: this.vessel.value,
@@ -361,14 +343,14 @@ We initialize the state in `App.js` to an empty object.
 * App
 
 ```js
-class App extends Component {
-...
+
   constructor() {
     super();
     this.state = {
       pirates: {}
     }
   }
+  
 ```
 
 For super review `reference/classes`.
