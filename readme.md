@@ -1,12 +1,8 @@
-# XI - React Intro
+# VII - React Intro
 
 ## Homework
 
-For your final project you have the option of converting your midterm to Angular 4 using the files we have worked on. You have the option to customize the content and functionality as you see fit. Be sure to add form validation, navigation and routing as outlined in session 10. This would be your choice if you needed to pursue Angular for personal or professional reasons.
-
-I strongly recommand doing the standard Angular [Heroes](https://angular.io/tutorial) tutorial before beginning to fill in any blanks.
-
-You may also create a version of the recipes list and details pages in React.
+For your final project you will create a version of the recipes list and details pages in React.
 
 Of course, if you wish you can do something entirely original.
 
