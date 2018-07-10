@@ -13,7 +13,7 @@ Of course, if you wish you can do something entirely original. Just propose it.
 It is important to get some hands on with 'primitive' (i.e. outside the Create React App setup) React coding.
 
 * Spend some quality time with the exercises on [Built with React](http://buildwithreact.com) (do the simple Tutorial).
-* Another important tutorial is the official [Intro to React](https://reactjs.org/tutorial/tutorial.html) tutorial.
+* Another useful tutorial you could try is the official [Intro to React](https://reactjs.org/tutorial/tutorial.html) tutorial.
 
 <!-- * THIS IS GOOD STUFF - SEE THE BEGINNING BOOK TOO `http://exploringjs.com/es6/` (specifically `http://exploringjs.com/es6/ch_core-features.html#sec_from-constr-to-class` and `http://exploringjs.com/es6/ch_classes.html#ch_classes`) -->
 
