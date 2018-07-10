@@ -318,8 +318,8 @@ Go to the React dev tools, find the `AddPirateForm` component, `$r` in the conso
 Create a `pirate` object in `AddPirateForm`'s `createPirate` function:
 
 ```jsx
-createPirate(event) {
-  event.preventDefault();
+createPirate(e) {
+  e.preventDefault();
 
   const pirate = {
     name: this.name.value,
@@ -343,19 +343,19 @@ We initialize the state in `App.js` to an empty object.
 * App
 
 ```js
-
+class App extends Component {
+...
   constructor() {
     super();
     this.state = {
       pirates: {}
     }
   }
-  
 ```
 
-For super review `reference/classes`.
+For `super` review `reference/classes`.
 
-In React tools, find App, view state.
+In React tools, find `App` note the `state` entry..
 
 And add a method to `App.js` using the date method to create a unique identifier:
 
@@ -425,13 +425,13 @@ We now have an `addPirate` function in App.js:
   }
 ```
 
-Unlike the `createPirate` function, it stores the new pirate in state. Test with App in React tool:
+Unlike the `createPirate` function, it stores the new pirate in `state`. Test with `App` in React tool:
 
 `$r.addPirate({name: 'joe'})`
 
 ### Passing Props
 
-We need to make the `addPirate` function available to the `AddPirateForm` by passing it down using props:
+We need to make the `addPirate` function available to the `AddPirateForm` by passing it down using props as follows:
 
 `App.js > PirateForm > AddPirateForm`
 
@@ -471,7 +471,7 @@ class PirateForm extends Component {
 export default PirateForm;
 ```
 
-Examine the `AddPirateForm` props in React's inspector.
+Examine the `AddPirateForm` props in React's inspector. Note the property.
 
 Since there is no reference to `AddPirateForm` in `App.js` we needed to perform this props pass via `PirateForm`.
 
@@ -482,8 +482,8 @@ In `AddPirateForm`:
 `this.props.addPirate(pirate);`
 
 ```js
-  createPirate(event) {
-    event.preventDefault();
+  createPirate(e) {
+    e.preventDefault();
     const pirate = {
       name: this.name.value,
       vessel: this.vessel.value,
@@ -493,11 +493,11 @@ In `AddPirateForm`:
   }
 ```
 
-We should now be able to create a pirate using the form and see it in the React browser extension when examining App.
+We should now be able to create a pirate using the form and see it in the React browser extension when examining `App`.
 
 ## Resetting the Form
 
-We have refs on the input fields. When we click "Add Pirate" the form still holds the data so we need to empty it out.
+We have refs on the input fields. When we click "Add Pirate" the form still holds the data so we need to reset it.
 
 Empty the form with a [ref](https://facebook.github.io/react/docs/refs-and-the-dom.html#adding-a-ref-to-a-class-component).
 
@@ -507,11 +507,11 @@ Empty the form with a [ref](https://facebook.github.io/react/docs/refs-and-the-d
 
 ```js
     return (
-      <form ref={(input)=>this.pirateForm = input } onSubmit={(e) => this.createPirate(e)}>
-      <input ref={(input) => this.name = input } type="text" placeholder="Pirate name" />
-      <input ref={(input) => this.vessel = input } type="text" placeholder="Pirate vessel" />
-      <input ref={(input) => this.weapon = input } type="text" placeholder="Pirate weapon" />
-      <button type="submit">Add Pirate</button>
+      <form ref={ (input)=>this.pirateForm = input } onSubmit={ (e) => this.createPirate(e) }>
+        <input ref={ (input) => this.name = input } type="text" placeholder="Pirate name" />
+        <input ref={ (input) => this.vessel = input } type="text" placeholder="Pirate vessel" />
+        <input ref={ (input) => this.weapon = input } type="text" placeholder="Pirate weapon" />
+        <button type="submit">Add Pirate</button>
       </form>
       )
 ```
@@ -519,14 +519,15 @@ Empty the form with a [ref](https://facebook.github.io/react/docs/refs-and-the-d
 and `this.pirateForm.reset();`:
 
 ```js
-createPirate(event) {
-    event.preventDefault()
-    console.log('make a pirate')
+createPirate(e) {
+    e.preventDefault()
+
     const pirate = {
       name: this.name.value,
       vessel: this.vessel.value,
       weapon: this.weapon.value,
     }
+
     this.props.addPirate(pirate)
     this.pirateForm.reset()
   }
@@ -536,12 +537,13 @@ The form should now empty and the `addPirate` function is called to store our pi
 
 ## Displaying Pirates
 
-We can add pirates to state but cannot see them in the UI. Let's create an unordered list in Pirate.js
+We can add pirates to state but cannot see them in the UI. Let's create an unordered list in `Pirate.js`.
 
 * Pirate.js:
 
 ```js
 import React, { Component } from 'react';
+
 import '../assets/css/Pirate.css'
 
 class Pirate extends React.Component {
@@ -559,7 +561,7 @@ class Pirate extends React.Component {
 export default Pirate;
 ```
 
-Unlike Angular there are no built in loops, repeats etc. You simply use vanilla JS (i.e. we need a replacement for ng-repeat to make pirate components).
+Unlike Angular there are no built in loops, repeats etc. - you use vanilla JS (i.e. we need a replacement for Angular's ng-repeat to make pirate components).
 
 ## Sample Pirates
 
@@ -601,7 +603,7 @@ With `Array.map()`:
 
 `array.map(<function that applies to each item in the array>)` to create components.
 
-Example - Doubling numbers:
+Review Example - Doubling numbers:
 
 ```js
 > var numbers = [1,5,8]
@@ -656,7 +658,7 @@ This time we will import the data into `App.js` as an object.
 * App
 
 ```js
-import piratesFile from './data/sample-pirates-object'
+import piratesFile from './data/sample-pirates-object';
 ```
 
 (Check for errors - might need to recompile by stopping and starting npm.)
@@ -714,8 +716,6 @@ And edit to use the key to pass a details prop to the Pirate component:
 ```
 
 Create a new pirate using the form.
-
-## start spr2018
 
 Add an object with the details to the Pirate properties and a few more display entries shortening them with a variable: `const {details} = this.props;`.
 
@@ -966,7 +966,7 @@ To this:
 }
 ```
 
-and Publish.
+and click Publish.
 
 Examine App.js state. Any change to pirates needs to be made to firebase.
 
@@ -992,7 +992,7 @@ In a new terminal cd into `react-pirates` and run:
 
 ### Add domain, database URL, API key.
 
-In Firebase click on Overview > Add Firebase to your webapp
+In Firebase click on `Overview > Add Firebase to your webapp`
 
 We only need:
 
