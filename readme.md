@@ -4,15 +4,15 @@
 
 For your final project you will create a version of the recipes list and details pages in React.
 
-Of course, if you wish you can do something entirely original.
-
-* Spend some quality time with the exercises on [Built with React](http://buildwithreact.com) (do the Tutorial).
+Of course, if you wish you can do something entirely original. Just propose it.
 
 ## Reading
 
-* `http://exploringjs.com/es6/` (specifically `http://exploringjs.com/es6/ch_core-features.html#sec_from-constr-to-class` and `http://exploringjs.com/es6/ch_classes.html#ch_classes`)
+* Spend some quality time with the exercises on [Built with React](http://buildwithreact.com) (do the simple Tutorial).
 
-* Book marking the [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet) notes is also a very good idea. Please skim them.
+<!-- * THIS IS GOOD STUFF - SEE THE BEGINNING BOOK TOO `http://exploringjs.com/es6/` (specifically `http://exploringjs.com/es6/ch_core-features.html#sec_from-constr-to-class` and `http://exploringjs.com/es6/ch_classes.html#ch_classes`) -->
+
+<!-- * Book marking the [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-stylesheet) notes is also a very good idea. Please skim them. -->
 
 ## Create a React Project
 
