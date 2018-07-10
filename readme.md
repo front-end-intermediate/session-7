@@ -688,9 +688,11 @@ render() {
 
 ```
 
-And edit to use the key to pass a details prop to the Pirate component using 
+And edit to use the key to pass a details prop to the Pirate component using:
 
 `.map( key => <Pirate key={key} details={this.state.pirates[key]}`
+
+`App.js`:
 
 ```js
   render() {
@@ -866,9 +868,9 @@ Pass the prop to `Pirate` from App using `removePirate = {this.removePirate}`:
 {
   Object
   .keys(this.state.pirates)
-  .map( key => <Pirate key={key}
-    details={this.state.pirates[key]}
-    removePirate={this.removePirate} /> )
+  .map( key => <Pirate key = { key }
+    details = {this.state.pirates[key]}
+    removePirate = {this.removePirate} /> )
 }
 ```
 
@@ -983,7 +985,7 @@ To this:
 
 and click Publish.
 
-Examine App.js state. Any change to pirates needs to be made to firebase.
+Examine `App.js` state. Any change to pirates needs to be made to firebase.
 
 ## Rebase
 
@@ -1017,7 +1019,7 @@ authDomain: "xxx",
 databaseURL: "xxx",
 ```
 
-Edit base with the information, e.g. (DO NOT COPY THE THREE SETTING - USE YOUR OWN):
+Edit `base.js` with the information, e.g. (DO NOT COPY THE THREE SETTING - USE YOUR OWN):
 
 ```js
 import Rebase from 're-base'
@@ -1031,7 +1033,7 @@ const base = Rebase.createClass({
 export default base
 ```
 
-Import into App.js
+Import into `App.js`:
 
 `import base from './base'`
 
@@ -1076,7 +1078,7 @@ removePirate(key){
 }
 ```
 
-## spr2018 Stop here
+## summer2018 Stop here
 
 Move on to [session 12](https://github.com/front-end-intermediate/session-12#bi-directional-data)
 
