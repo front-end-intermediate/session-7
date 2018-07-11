@@ -17,7 +17,8 @@
 		const talkFunction = dog.talk
 		talkFunction() // undefined. why?
 
-		/* 'this' is no longer the dog. 'this' refers to the context where the function was called, not where the function was defined. e.g.  */
+		/* 'this' is no longer the dog. 'this' refers to the context 
+		where the function was called, not where the function was defined. e.g.  */
 		// const talkFunction = function(){
 		// 	console.log(this.sound)
 		// }
