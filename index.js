@@ -42,20 +42,17 @@ var render = function (template, elem) {
   elem.innerHTML = template;
 }
 
-var fetchPosts = function (url, callback) {
+var fetchPosts = function (url, callBack) {
   fetch(url)
   .then(response => response.json())
   .then( posts => callBack(posts) )
 }
-
-log(posts)
 
 var template = function () {
   fetchPosts('https://jsonplaceholder.typicode.com/posts', posts => {
     var markup = posts.map(post => post.title)
     return markup;
   })
-
 }
 
 // {
