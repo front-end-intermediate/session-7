@@ -307,9 +307,35 @@ createPirate(e) {
 }
 ```
 
+```js
+import React, { Component } from 'react';
+import '../assets/css/AddPirateForm.css';
+
+class AddPirateForm extends Component {
+
+  createPirate(e) {
+    e.preventDefault();
+    console.log('making a pirate')
+  }
+
+  render(){
+    return (
+      <form onSubmit = { (e) => this.createPirate(e) }>
+        <input type="text" placeholder="Pirate name" />
+        <input type="text" placeholder="Pirate vessel" />
+        <input type="text" placeholder="Pirate weapon" />
+        <button type="submit">Add Pirate</button>
+      </form>
+      )
+  }
+}
+
+export default AddPirateForm;
+```
+
 And test using the form interface.
 
-Add [references](https://facebook.github.io/react/docs/refs-and-the-dom.html) to the form to store references to the input:
+Add [refs](https://facebook.github.io/react/docs/refs-and-the-dom.html) to the form to store references to the input:
 
 ```js
     return (
@@ -345,13 +371,16 @@ Test by entering a pirate in the form.
 
 ## State
 
-The key difference between props and [state](https://facebook.github.io/react-native/docs/state.html) is that state is internal and controlled by the component itself, while props are external and controlled by whatever component renders the component. - [ref](http://buildwithreact.com/tutorial/state).
+The key difference between props and [state](https://facebook.github.io/react-native/docs/state.html): 
+
+* state is internal and controlled by the component itself
+* props are external and controlled by whatever component renders the component. - [ref](http://buildwithreact.com/tutorial/state).
 
 Get the pirate object into state.
 
 We initialize the state in `App.js` to an empty object.
 
-* App
+`App.js`:
 
 ```js
 class App extends Component {
@@ -366,7 +395,7 @@ class App extends Component {
 
 (For `super` review `reference/classes`.)
 
-In React tools, find `App` note the `state` entry..
+In React tools, find `App` note the `state` entry.
 
 And add a method to `App.js` using the date method to create a unique identifier:
 
@@ -405,7 +434,7 @@ Super extends the app component.
 
 Review super in classes: `reference / extending-classes.html`
 
-Note - bind() - creates a new function that, when called, has its `this` keyword set to the provided value.
+Note - `bind()` - creates a new function that, when called, has its `this` keyword set to the provided value.
 
 See: `reference / bind / index.html` and `reference / bind / button.html`
 
@@ -434,7 +463,7 @@ Unlike the `createPirate` function, it stores the new pirate in `state`. Test wi
 
 ### Passing Props
 
-We need to make the `addPirate` function available to the `AddPirateForm` by passing it down using props as follows:
+We need to make the `addPirate` function available to the `AddPirateForm` by passing it using props:
 
 `App.js > PirateForm > AddPirateForm`
 
@@ -454,7 +483,7 @@ We need to make the `addPirate` function available to the `AddPirateForm` by pas
 
 Examine the `PirateForm` props in React tool.
 
-Only one level more! Pass the prop to `AddPirateForm` from `PirateForm` with `<AddPirateForm addPirate={this.props.addPirate} />`:
+Only one level more. Pass the prop to `AddPirateForm` from `PirateForm` with `<AddPirateForm addPirate={this.props.addPirate} />`:
 
 ```js
 import React, { Component } from 'react';
@@ -555,8 +584,6 @@ We can add pirates to state but cannot see them in the UI. Let's create an unord
 
 ```
 
-Unlike Angular there are no built in loops, repeats etc. - you use vanilla JS (i.e. we need a replacement for Angular's ng-repeat to make pirate components).
-
 ## Sample Pirates
 
 Using a JSON Array in `Pirate.js`.
@@ -647,7 +674,7 @@ export default Pirate;
 
 This time we will import the data into `App.js` as an object. Switch the array out for the object version of the pirate samples.
 
-* `App.js`:
+`App.js`:
 
 ```js
 import piratesFile from './data/sample-pirates-object';
@@ -668,7 +695,7 @@ Use `Object.keys()` (a private method on the Object) instead. See the [MDN](http
 
 We will massage the `<Pirate />` component in `App.js` to enable the use of `.map()`.
 
-* `App.js`:
+`App.js`:
 
 ```js
 render() {
@@ -761,7 +788,7 @@ Test again using the form.
 
 ### Load sample data via PirateForm
 
-Recall we imported the dariates data in `App.js`:
+Recall we imported the pirates data in `App.js`:
 
 `import piratesFile from './data/sample-pirates-object'`
 
