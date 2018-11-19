@@ -21,10 +21,10 @@ It is important to get some hands on with 'primitive' (i.e. outside the Create R
 
 ## Create a React Project
 
-You need to have installed `Create React App` as per session 6.
+To create a new app, run:
 
 ```bash
-create-react-app react-pirates
+npx create-react-app react-pirates
 ```
 
 Move the `data` and `assets` folders from reference to the `src` directory in `react-pirates`.
