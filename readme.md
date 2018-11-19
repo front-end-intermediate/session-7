@@ -47,6 +47,8 @@ Use `2-react-jsx.html` and note the error.
 <script type="text/babel">
 ```
 
+The JS:
+
 ```js
 const rootElement = document.getElementById('root')
 
@@ -128,7 +130,7 @@ const element = <div {...props} className="myClass">Hi There</div>
 
 Refer to `reference > react-overview > index.html`. 
 
-For this you will need to open the page via HTTP. You can use `Live Server` in VS Code, the [lite-server](https://www.npmjs.com/package/lite-server) npm package or, if you have Python installed (default on MacOs) cd into `rect-overview` and run:
+For this you will need to open the page via HTTP. You can install and use `Live Server` in VS Code, the [lite-server](https://www.npmjs.com/package/lite-server) npm package or, if you have Python installed (default on MacOs) cd into `rect-overview` and run:
 
 ```sh
 python -m SimpleHTTPServer 9001
@@ -138,7 +140,9 @@ Again, note that the variable `elem` is compiling to `React.createElement()`.
 
 Extract the component to a variable - add:
 
-`const helloWorld = <div>Hello World</div>`
+```js
+const helloWorld = <div>Hello World</div>
+```
 
 And render it:
 
@@ -153,7 +157,9 @@ const elem = (
 
 Reuse and parameterize code:
 
-`const message = (props) => <div>{props.msg}</div>`
+```js
+const message = (props) => <div>{props.msg}</div>
+```
 
 Render them
 
@@ -185,7 +191,7 @@ Note the error when we try to use the standalone component:
 
  ```js
   <div className="container">
-  <message />
+    <message />
     { React.createElement(message, { msg: 'Hello World' })}
     { React.createElement(message, { msg: 'Goodbye World' })}
   </div>
@@ -267,7 +273,7 @@ Before we get any further let's look at the `class` syntax we will be using in R
 
 cd into `reference > classes`, run a server and open `1-inheritance.html` in a browser.
 
-Classes in React (ref. `forms.js`) are based on JS prototypal inheritance.
+Classes in React (ref. `react-overview > forms.js`) are based on JS prototypal inheritance.
 
 We have a constructor function:
 
@@ -323,12 +329,6 @@ Execute the drive method:
 > miata.drive()
 ```
 
-All cars inherit the prototype.
-
-```sh
-> expo.drive()
-```
-
 Add an additional method:
 
 ```js
@@ -340,6 +340,8 @@ Car.prototype.stop = function() {
 ```sh
 > expo.stop()
 ```
+
+In classic protoypal inheritance the function `Car` is our 'constructor' and we add methods using `Car.prototype`.
 
 ### Classes
 
