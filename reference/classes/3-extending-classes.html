@@ -24,8 +24,19 @@
       }
     }
     
+    class Dog extends Animal {
+      constructor(name, breed) {
+        super(name);
+        this.breed = breed;
+      }
+      bark() {
+        console.log(`Bark bark my name is ${this.name} and I\'m a dog`);
+      }
+    }
+    
+    const yorik = new Dog('Yorik', 'Terrier');
     const rhino = new Animal('Rhiney');
-
+    
   </script>
 </body>
 
