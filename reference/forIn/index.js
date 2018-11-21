@@ -7,6 +7,14 @@ import pirates from './sample-pirates-object.js'
 //   pirates[key]
 // })
 
-Object.keys(pirates).map((key) => {
-  console.log(pirates[key].name)
-})
+// Object.keys(pirates).map((key) => {
+//   console.log(pirates[key].name)
+// })
+
+const renderHTML = () => {
+  Object.keys(pirates).map((key) => {
+    `<p>${(pirates[key].name)}</p>`
+  })
+}
+
+renderHTML();
