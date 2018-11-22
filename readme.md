@@ -1418,6 +1418,8 @@ import piratesFile from './data/sample-pirates-object';
 
 For this version of sample-pirates we cannot directly use `.map` which is a method on the Array prototype - not the Object prototype.
 
+See `reference > forIn`
+
 Use `Object.keys()` (a private method on the Object) instead. See the [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) article on Object keys.
 
 ```js
