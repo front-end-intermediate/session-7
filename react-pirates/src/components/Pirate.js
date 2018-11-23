@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import '../assets/css/Pirate.css'
 
-class Pirate extends React.Component {
+class Pirate extends Component {
   render(){
+    const { details } = this.props;
     return (
-      <div className='pirate'>
-        <p>{this.props.tagline}</p>
-        <ul>
-          <li>{this.props.details.name}</li>
-        </ul>
+      <div className="pirate">
+      <ul>
+        <li>{details.name}</li>
+        <li>{details.weapon}</li>
+        <li>{details.vessel}</li>
+        <li><button onClick={() => this.props.removePirate(this.props.index)}>X</button></li>
+      </ul>
       </div>
       )
   }
