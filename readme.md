@@ -751,6 +751,14 @@ https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
 
 `npm i -S mongoose`
 
+Maybe use CORS 
+
+```js
+const cors = require('cors');
+
+app.use(cors());
+```
+
 ```js
 var express = require('express');
 var router = express.Router();
@@ -896,6 +904,7 @@ import axios from 'axios';
     }));
   }
 ```
+
 
 <!-- 
 ### Persisting the Data

@@ -10,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.addPirate = this.addPirate.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
+    // this.loadSamples = this.loadSamples.bind(this);
     this.removePirate = this.removePirate.bind(this);
     this.state = {
       pirates: {},
@@ -30,22 +30,8 @@ class App extends Component {
       isLoading: false
     }));
   }
-  // componentDidMount(){
-  //   this.setState({ isLoading: true });
-  //   fetch('http://localhost:3005/api/pirates')
-  //   .then(response => {
-  //     if (response.ok) {
-  //       return response.json();
-  //     } else {
-  //       throw new Error('Something went wrong ...');
-  //     }
-  //   })
-  //   .then(pirates => this.setState({pirates, isLoading: false}))
-  //   .catch(error => this.setState({ error, isLoading: false }));
-  // }
   
   render() {
-    // console.log(this.state.data)
     const { isLoading, error } = this.state;
 
     if (error) {
@@ -68,40 +54,41 @@ class App extends Component {
           removePirate={this.removePirate} /> )
         }
         </ul>
-        <PirateForm addPirate={this.addPirate} loadSamples={this.loadSamples} />
+        <PirateForm 
+        addPirate={this.addPirate} 
+        // loadSamples={this.loadSamples} 
+        />
         </div>
         );
       }
       
-      loadSamples(){
-        this.setState({
-          pirates: piratesFile
-        })
-      }
+      // loadSamples(){
+      //   this.setState({
+      //     pirates: piratesFile
+      //   })
+      // }
       
       removePirate(key){
         const pirates = {...this.state.pirates}
-        delete pirates[key]
-        this.setState({pirates})
+        console.log(key)
+        console.log(this.state.pirates)
+        console.log(Object.keys(pirates[key]))
+        // thisPirate = 
+        // axios.get(`http://localhost:3005/api/pirates/${this._id}`)
+        // .then(response => this.setState({
+        //   pirates: response.data,
+        //   isLoading: false
+        // }))
+        // delete pirates[key]
+        // this.setState({pirates})
       }
       
       addPirate(pirate) {
-        //take a copy of the current state and put it into pirates var
         const pirates = {...this.state.pirates}
-        //create a unique id
         const timestamp = Date.now()
-        //add new pirate using accessor and id - objectName["propertyName"] and assignment
         pirates[`pirate-${timestamp}`] = pirate
-        //set state pirates with var pirates
         this.setState({ pirates: pirates })
       }
-      
-      // componentWillMount(){
-      //   this.ref = base.syncState(`daniel-deverell-pirates/pirates`, {
-      //     context: this,
-      //     state: 'pirates'
-      //   })
-      // }
       
     }
     
