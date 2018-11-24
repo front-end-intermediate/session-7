@@ -735,8 +735,167 @@ Try this is `Pirate.js`:
 
 and note the error message.
 
+https://expressjs.com/en/starter/generator.html
+https://mlab.com/databases/pirates/collections/pirates
 https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
 
+### Persisting the Data
+
+`cd` to the desktop.
+
+`mkdir express-pirates`
+
+`npx express-generator --no-view`
+
+`npm i -S nodemon`
+
+`npm i -S mongoose`
+
+```js
+var express = require('express');
+var router = express.Router();
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const mongoUri = 'mongodb://devereld:dd2345@ds113746.mlab.com:13746/pirates';
+
+// schema
+const PirateSchema = new Schema({
+  name: String,
+  weapon: String,
+  vessel: String
+});
+
+const Recipe = mongoose.model('Pirate', PirateSchema);
+
+var app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', "GET,PUT,POST,DELETE")
+  next()
+})
+
+app.get('/api/pirates', function(req, res){
+  Recipe.find({}, function(err, results) {
+    return res.send(results);
+  });
+});
+
+// initialization
+mongoose.connect(mongoUri, { useNewUrlParser: true });
+
+module.exports = app;
+
+```
+
+`App.js`:
+
+```js
+    this.state = {
+      pirates: {},
+      // data: null
+    }
+  }
+
+  componentWillMount(){
+    fetch('http://localhost:3005/api/pirates')
+    .then(response => response.json())
+    .then(pirates => this.setState({pirates}))
+  }
+```
+
+## Loading
+
+```js
+    this.state = {
+      pirates: {},
+      isLoading: false
+    }
+  }
+
+  componentDidMount(){
+    this.setState({ isLoading: true });
+    fetch('http://localhost:3005/api/pirates')
+    .then(response => response.json())
+    .then(pirates => this.setState({pirates, isLoading: false}))
+  }
+  
+  render() {
+    // console.log(this.state.data)
+    const { pirates, isLoading } = this.state;
+
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
+```
+
+Chrome dev tools > network > Online > Slow 3G
+
+## Error Handling
+
+```js
+    this.state = {
+      pirates: {},
+      isLoading: false,
+      error: null
+    }
+  }
+
+  componentDidMount(){
+    this.setState({ isLoading: true });
+    fetch('http://localhost:3005/api/pirates')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong ...');
+      }
+    })
+    // .then(response => response.json())
+    .then(pirates => this.setState({pirates, isLoading: false}))
+    .catch(error => this.setState({ error, isLoading: false }));
+  }
+  
+  render() {
+    // console.log(this.state.data)
+    const { isLoading, error } = this.state;
+
+    if (error) {
+      return <p>{error.message}</p>;
+    }
+
+    if (isLoading) {
+      return <p>Loading ...</p>;
+    }
+```
+
+## Axios
+
+You can substitute the native fetch API with another library. For instance, another library might run for every erroneous requests into the catch block on its own without you having to throw an error in the first place. A great candidate as a library for fetching data is axios. 
+
+Install axios in your project with `npm install axios -S` and use it instead of the native fetch API in your project. Let’s refactor using axios instead of the fetch API.
+
+```js
+import axios from 'axios';
+
+  componentDidMount(){
+    this.setState({ isLoading: true });
+    axios.get('http://localhost:3005/api/pirates')
+    .then(response => this.setState({
+      pirates: response.data,
+      isLoading: false
+    }))
+    .catch(error => this.setState({
+      error,
+      isLoading: false
+    }));
+  }
+```
 
 <!-- 
 ### Persisting the Data
