@@ -71,20 +71,16 @@ class App extends Component {
       removePirate(key){
         const pirates = {...this.state.pirates}
         console.log(key)
-        console.log(this.state.pirates)
-        console.log(Object.keys(pirates[key]))
-        // thisPirate = 
-        // axios.get(`http://localhost:3005/api/pirates/${this._id}`)
-        // .then(response => this.setState({
-        //   pirates: response.data,
-        //   isLoading: false
-        // }))
-        // delete pirates[key]
-        // this.setState({pirates})
+        console.log(this.state.pirates[key]._id)
+        let pirateDel = this.state.pirates[key]._id;
+        axios.get(`http://localhost:3005/api/pirates/${pirateDel}`)
+        .then(delete pirates[key])
+        .then(this.setState({pirates}))
       }
       
       addPirate(pirate) {
         const pirates = {...this.state.pirates}
+        // axios.post(`http://localhost:3005/api/pirates/${pirateDel}`)
         const timestamp = Date.now()
         pirates[`pirate-${timestamp}`] = pirate
         this.setState({ pirates: pirates })
