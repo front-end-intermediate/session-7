@@ -3,7 +3,7 @@ import Pirate from './Pirate';
 import axios from 'axios';
 import Header from './Header'
 import PirateForm from './PirateForm';
-import piratesFile from '../data/sample-pirates-object';
+// import piratesFile from '../data/sample-pirates-object';
 
 class App extends Component {
   
@@ -79,11 +79,13 @@ class App extends Component {
       }
       
       addPirate(pirate) {
+        console.log(pirate)
         const pirates = {...this.state.pirates}
-        // axios.post(`http://localhost:3005/api/pirates/${pirateDel}`)
-        const timestamp = Date.now()
-        pirates[`pirate-${timestamp}`] = pirate
-        this.setState({ pirates: pirates })
+        axios.post(`http://localhost:3005/api/pirates/`, {pirate})
+        // const timestamp = Date.now()
+        // pirates[`pirate-${timestamp}`] = pirate
+        .then(response => console.log(response))
+        .then(this.setState({ pirates: pirates }))
       }
       
     }
